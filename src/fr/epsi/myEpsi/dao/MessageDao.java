@@ -36,6 +36,25 @@ List<Message> messages = new ArrayList<>();
 		}
 		return null;
 	}
+	
+	public static int countMessages() {
+		int messages = 0;
+		Connection con = ConnectionTool.getConnection();
+		if(con != null){
+			try{
+				Statement stmt = con.createStatement();
+				ResultSet result = stmt.executeQuery("SELECT count(*) FROM MESSAGES");
+				while (result.next()){
+					messages = result.getInt(0);
+				}
+				con.close();
+			}catch (SQLException e){
+				return 0;
+			}
+			return 0;
+		}
+		return messages;
+	}
 
 	@Override
 	public Message getMessage(Long id) {
