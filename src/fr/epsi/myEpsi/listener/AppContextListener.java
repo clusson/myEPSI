@@ -8,8 +8,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-/*import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.xml.DOMConfigurator;*/
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import fr.epsi.myEpsi.util.DBConnectionManager;
 
@@ -30,7 +30,7 @@ public class AppContextListener implements ServletContextListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    	/*
+    	
     	//initialize log4j
     	String log4jConfig = ctx.getInitParameter("log4j-config");
     	if(log4jConfig == null){
@@ -48,7 +48,7 @@ public class AppContextListener implements ServletContextListener {
 				BasicConfigurator.configure();
 			}
 		}
-    	System.out.println("log4j configured properly");*/
+    	System.out.println("log4j configured properly");
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

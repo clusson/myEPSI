@@ -6,7 +6,7 @@
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type=text/javascript" src="bootstrap/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Liste des utilisateurs</title>
@@ -22,13 +22,13 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${users}" var="user">
+            <c:forEach items="{users}" var="user">
                 <tr>
-                    <td><c:out value="${user.ID}" /></td>
-                    <td><c:out value="${user.PASSWORD}" /></td>
-                    <td><c:out value="${user.ISADMINISTRATOR}" /></td>
-                    <td><a href="UserServlet?action=edit&userId=<c:out value="${user.ID}"/>">Update</a></td>
-                    <td><a href="UserServlet?action=delete&userId=<c:out value="${user.ID}"/>">Delete</a></td>
+                    <td><c:out value="{user.ID}" /></td>
+                    <td><c:out value="{user.PASSWORD}" /></td>
+                    <td><c:out value="{user.ISADMINISTRATOR}" /></td>
+                    <td><a href="UserServlet?action=edit&userId=<c:out value="{user.ID}"/>">Update</a></td>
+                    <td><a href="UserServlet?action=delete&userId=<c:out value="{user.ID}"/>">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>

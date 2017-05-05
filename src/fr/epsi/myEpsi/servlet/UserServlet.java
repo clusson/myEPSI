@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.UserDao;
-import fr.epsi.myEpsi.service.IUserService;
 
 /**
  * Servlet implementation class UserServlet
@@ -21,7 +20,7 @@ public class UserServlet extends HttpServlet {
     private static String LIST_USER = "/listUser.jsp";
     
     private UserDao dao;
-    private IUserService user;
+    private User user;
     
     /**
      * @see HttpServlet#HttpServlet()
