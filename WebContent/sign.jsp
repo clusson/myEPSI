@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form action = "sign.jsp" method = "POST">
+<form action = "sign" method = "POST">
 <h2>Votre e-mail</h2>
 <input type="email" name="id"></input>
 <h2>Votre mot de passe</h2>
