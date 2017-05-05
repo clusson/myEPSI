@@ -3,15 +3,20 @@ package fr.epsi.myEpsi.service;
 import java.util.List;
 
 import fr.epsi.myEpsi.beans.User;
+import fr.epsi.myEpsi.dao.IUserDao;
 import fr.epsi.myEpsi.dao.UserDao;
 
 public class UserService implements IUserService {
+	private IUserDao userDao;
+	
+	public UserService() {
+		UserDao user = new UserDao();
+	}
 
-	UserDao user = new UserDao();
 	
 	@Override
 	public List<User> getListOfUsers() {
-		List<User> result = user.getListOfUsers();
+		List<User> result = userDao.getListOfUsers();
 		return result;
 	}
 

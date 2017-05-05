@@ -12,5 +12,6 @@
 </head>
 <body>
 Test bonjour ! Clap OVER
+<jsp:forward page="/UserServlet?action=listUser" />
 </body>
 </html>

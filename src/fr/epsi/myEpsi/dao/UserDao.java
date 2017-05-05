@@ -11,19 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.epsi.myEpsi.beans.User;
+import fr.epsi.myEpsi.util.DBConnectionManager;
 
 public class UserDao implements IUserDao{
 
-	private ConnectionTool connection;
+	
+	private DBConnectionManager connection;
 	
 	public UserDao() {
-		//connection = ConnectionTool.getConnection();
+		connection.getConnection();
 	}
 	
 	@Override
 	public List<User> getListOfUsers() {
 		List<User> users = new ArrayList<User>();
         try {
+        	
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM USERS");
             while (rs.next()) {
@@ -109,5 +112,6 @@ public class UserDao implements IUserDao{
 	        }
 		
 	}
+
 
 }
