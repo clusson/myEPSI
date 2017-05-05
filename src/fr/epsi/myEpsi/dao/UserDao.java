@@ -32,7 +32,6 @@ public class UserDao implements IUserDao{
 			   resultats = stmt.executeQuery(requete);
 			    while (resultats.next()) {
 			    	user.add(new User(resultats.getString(1), resultats.getString(2), resultats.getBoolean(3)));
-
 			     }	   
 
 		} catch (SQLException e1) {
