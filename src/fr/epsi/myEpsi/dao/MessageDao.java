@@ -45,7 +45,7 @@ List<Message> messages = new ArrayList<>();
 				Statement stmt = con.createStatement();
 				ResultSet result = stmt.executeQuery("SELECT count(*) FROM MESSAGES");
 				while (result.next()){
-					messages = result.getInt(0);
+					messages = result.getInt(1);
 				}
 				con.close();
 			}catch (SQLException e){

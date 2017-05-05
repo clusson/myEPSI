@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>myEpsi</title>
 </head>
 <body>
+<h1>Bondour !</h1>
 <% 
 int version = 1;
 out.println("version"+version);

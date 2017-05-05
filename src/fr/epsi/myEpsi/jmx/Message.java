@@ -13,5 +13,4 @@ public class Message implements MessageBean {
     public void getMessages() {
         MessageDao.countMessages();
     }
-
 }
