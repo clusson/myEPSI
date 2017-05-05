@@ -12,14 +12,14 @@
 <h1>myEpsi</h1>
 <h2>Connexion utilisateur</h2>
 <div class="container">
-<form>
+<form action="login.jsp" method="POST">
 <div class="form-group">
 <label for="exampleInputEmail1">Email</label>
 <input type="email" class="form-control" placeholder="Entrer votre email">
 </div>
 <div class="form-group">
 <label for="exampleInputPassword1">Mot de passe</label>
-<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+<input type="password" class="form-control" placeholder="Mot de passe">
 </div>
 
 <button type="submit" class="btn btn-default">Se connecter</button>
