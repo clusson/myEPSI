@@ -1,6 +1,6 @@
 package fr.epsi.myEpsi.jmx;
 
-public interface MessageBean {
+public interface MessageMBean {
     public String getNumber();
     public void getMessages();
 }

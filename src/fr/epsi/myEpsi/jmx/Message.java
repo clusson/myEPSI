@@ -2,7 +2,7 @@ package fr.epsi.myEpsi.jmx;
 
 import fr.epsi.myEpsi.dao.MessageDao;
 
-public class Message implements MessageBean {
+public class Message implements MessageMBean {
 
 	private static String nom = "MessageBean";
 
