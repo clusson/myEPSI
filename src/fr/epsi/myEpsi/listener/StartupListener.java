@@ -6,7 +6,7 @@ import javax.management.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebListener;
 
-import fr.epsi.myEpsi.jmx.Premier;
+import fr.epsi.myEpsi.jmx.Message;
 
 /**
  * Application Lifecycle Listener implementation class StartupListener
@@ -37,8 +37,8 @@ public class StartupListener implements ServletContextListener {
     	ObjectName name = null;
 
     	try {
-    	    name = new ObjectName("fr.epsi.myEpsi.jmx:type=PremierMBean");
-    	    Premier mbean = new Premier();
+    	    name = new ObjectName("fr.epsi.myEpsi.jmx:type=MessageBean");
+    	    Message mbean = new Message();
 
     	    mbs.registerMBean(mbean, name);
 

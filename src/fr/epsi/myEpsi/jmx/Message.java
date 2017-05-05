@@ -1,8 +1,8 @@
 package fr.epsi.myEpsi.jmx;
 
-public class Premier implements PremierMBean {
+public class Message implements MessageBean {
 
-	private static String nom = "PremierMBean";
+	private static String nom = "MessageBean";
     private int valeur = 100;
 
     public String getNom() {
@@ -18,7 +18,7 @@ public class Premier implements PremierMBean {
     }
 
     public void getMessages() {
-        System.out.println("Rafraichir les donnees");
+        
     }
 
 
