@@ -2,6 +2,7 @@ package fr.epsi.myEpsi.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -13,55 +14,99 @@ import fr.epsi.myEpsi.beans.User;
 
 public class UserDao implements IUserDao{
 
+	private ConnectionTool connection;
+	
+	public UserDao() {
+		//connection = ConnectionTool.getConnection();
+	}
+	
 	@Override
 	public List<User> getListOfUsers() {
-		try {
-			Class.forName("org.hsqldb.jdbcDriver");
-		} catch (ClassNotFoundException e2) {
-			e2.printStackTrace();
-		}
+		List<User> users = new ArrayList<User>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM USERS");
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getString("ID"));
+                user.setPassword(rs.getString("PASSWORD"));
+                user.setAdministrator(rs.getBoolean("ISADMINSITRATOR"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		Connection con;
-		
-		ResultSet resultats = null;
-		String requete = "SELECT * FROM USERS";
-		ArrayList user = new ArrayList<User>();
-		try {
-			con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9003");
-			   Statement stmt = con.createStatement();
-			   resultats = stmt.executeQuery(requete);
-			    while (resultats.next()) {
-			    	user.add(new User(resultats.getString(1), resultats.getString(2), resultats.getBoolean(3)));
-			     }	   
-
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		return user;
-
+        return users;
 	}
 
 	@Override
 	public User getUserById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = new User();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("SELECT * FROM USERS where ID=?");
+            preparedStatement.setString(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                user.setId((rs.getString("ID")));
+                user.setPassword(rs.getString("PASSWORD"));
+                user.setAdministrator(rs.getBoolean("ISADMINISTRATOR"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
 	}
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("INSERT INTO USERS(id,password,administrator) values (?, ?, ?, ? )");
+            // Parameters start with 1
+            preparedStatement.setString(1, user.getId());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setBoolean(3, user.getAdministrator());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 		
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("UPDATE USERS set PASSWORD=?, ISADMINISTRATOR=?" +
+                            "where ID=?");
+            // Parameters start with 1
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setBoolean(2, user.getAdministrator());
+            preparedStatement.setString(3, user.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Override
 	public void deleteUser(User user) {
-		// TODO Auto-generated method stub
+		 try {
+	            PreparedStatement preparedStatement = connection
+	                    .prepareStatement("DELETE FROM USERS where ID=?");
+	            // Parameters start with 1
+	            preparedStatement.setString(1, user.getId());
+	            preparedStatement.executeUpdate();
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 		
 	}
 

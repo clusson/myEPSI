@@ -8,7 +8,12 @@ public class User {
 	private String password;
 	private Boolean administrator;
 	
-	public User(String string, String string2, boolean boolean1) {
+	public User(String id, String password, boolean adminsitrator) {
+		this.id = id;
+		this.password = password;
+		this.administrator = administrator;
+	}
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getId() {
