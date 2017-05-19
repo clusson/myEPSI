@@ -1,4 +1,4 @@
-package fr.epsi.myEpsi.util;
+package fr.epsi.myEpsi.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBConnectionManager {
+public class DAOManager {
 	
 	public Connection connection;
 
-	public DBConnectionManager() throws ClassNotFoundException, SQLException{
+	public DAOManager() throws ClassNotFoundException, SQLException{
 		Class.forName("org.hsqldb.jdbcDriver");
 		this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9003");
 	}

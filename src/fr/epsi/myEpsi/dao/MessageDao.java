@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import fr.epsi.myEpsi.beans.Message;
 import fr.epsi.myEpsi.beans.User;
+import fr.epsi.myEpsi.util.DBConnectionManager;
 
 public class MessageDao implements IMessageDao {
 	
@@ -16,7 +17,8 @@ public class MessageDao implements IMessageDao {
 	public List<Message> getListOfMessages(User user) {
 List<Message> messages = new ArrayList<>();
 		
-		Connection con = ConnectionTool.getConnection();
+		DBConnectionManager con = new DBConnectionManager();
+		con.getConnection();
 		if(con != null){
 			try{
 				Statement stmt = con.createStatement();
