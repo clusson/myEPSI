@@ -31,7 +31,7 @@ public class Message {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
+	public String	 getContent() {
 		return content;
 	}
 	public void setContent(String content) {
