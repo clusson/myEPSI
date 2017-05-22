@@ -1,6 +1,5 @@
 package fr.epsi.myEpsi.beans;
 
-import java.sql.Timestamp;
 
 public class User {
 
@@ -8,7 +7,7 @@ public class User {
 	private String password;
 	private Boolean administrator;
 	
-	public User(String id, String password, boolean adminsitrator) {
+	public User(String id, String password, boolean administrator) {
 		this.id = id;
 		this.password = password;
 		this.administrator = administrator;

@@ -65,7 +65,7 @@ public class SignServlet extends HttpServlet {
 			logger.info(user.getId());
 			userService.addUser(user);
             pw.println("Login Success...!"); 
-            response.sendRedirect("home");
+            response.sendRedirect("index");
 		}
 		else {
 			pw.println("Sign Failed...!");
