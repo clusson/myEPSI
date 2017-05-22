@@ -18,12 +18,10 @@ public class UserDao implements IUserDao{
 	private DAOManager connection;
 	private static Logger logger = Logger.getLogger(UserDao.class);
 	
-	public UserDao() {
-		connection.getConnection();
-	}
 	
 	@Override
 	public List<User> getListOfUsers() {
+		connection.getConnection();
 		List<User> user = new ArrayList<User>();
         try {
         	
@@ -44,6 +42,7 @@ public class UserDao implements IUserDao{
 
 	@Override
 	public User getUserById(String id) {
+		connection.getConnection();
 		User user = new User();
         try {
             PreparedStatement preparedStatement = connection.
@@ -65,6 +64,7 @@ public class UserDao implements IUserDao{
 
 	@Override
 	public void addUser(User user) {
+		connection.getConnection();
         try {
             PreparedStatement preparedStatement = connection
     		.prepareStatement("INSERT INTO USERS(id,password,administrator) values "
@@ -80,6 +80,7 @@ public class UserDao implements IUserDao{
 
 	@Override
 	public void updateUser(User user) {
+		connection.getConnection();
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("UPDATE USERS set password=" + user.getPassword() + ","
@@ -94,6 +95,7 @@ public class UserDao implements IUserDao{
 
 	@Override
 	public void deleteUser(User user) {
+		connection.getConnection();
 		 try {
 	            PreparedStatement preparedStatement = connection
 	                    .prepareStatement("DELETE FROM USERS where ID="+ user.getId()+"");

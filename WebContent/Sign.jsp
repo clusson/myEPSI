@@ -4,7 +4,7 @@
 <html>
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> 
 <title>Inscription</title>
 </head>
