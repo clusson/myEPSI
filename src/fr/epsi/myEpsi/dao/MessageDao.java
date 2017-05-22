@@ -1,6 +1,5 @@
 package fr.epsi.myEpsi.dao;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,17 +10,20 @@ import fr.epsi.myEpsi.beans.User;
 
 public class MessageDao implements IMessageDao {
 	
-	DAOManager con ;
+	DAOManager connection;
+	
+	public MessageDao() {
+		connection.getConnection();
+	}
 
 	
 	@Override
 	public List<Message> getListOfMessages(User user) {
 		List<Message> messages = new ArrayList<>();
 
-		con.getConnection();
-		if(con != null){
+		if(connection != null){
 			try{
-				Statement stmt = con.createStatement();
+				Statement stmt = connection.createStatement();
 				ResultSet result = stmt.executeQuery("SELECT * FROM MESSAGES WHERE USER_ID = '" + user.getId());
 				while (result.next()){
 					Message message = new Message ();
@@ -30,7 +32,6 @@ public class MessageDao implements IMessageDao {
 					//...
 					messages.add(message);
 				}
-				con.close();
 			}catch (SQLException e){
 				return null;
 			}
@@ -39,17 +40,17 @@ public class MessageDao implements IMessageDao {
 		return null;
 	}
 	
-	public static int countMessages() {
+	public int countMessages() {
 		
 		int messages = 0;
-		if(con != null){
+		if(connection != null){
 			try{
-				Statement stmt = con.createStatement();
+				Statement stmt = connection.createStatement();
 				ResultSet result = stmt.executeQuery("SELECT count(*) FROM MESSAGES");
 				while (result.next()){
 					messages = result.getInt(1);
 				}
-				con.close();
+
 			}catch (SQLException e){
 				return 0;
 			}

@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebListener;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 
-import fr.epsi.myEpsi.util.DBConnectionManager;
+import fr.epsi.myEpsi.dao.DAOManager;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {
@@ -22,7 +22,7 @@ public class AppContextListener implements ServletContextListener {
 
     	
     	try {
-			DBConnectionManager connectionManager = new DBConnectionManager();
+			DAOManager connectionManager = new DAOManager();
 			ctx.setAttribute("DBConnection", connectionManager.getConnection());
 			System.out.println("DB Connection initialized successfully.");
 		} catch (ClassNotFoundException e) {

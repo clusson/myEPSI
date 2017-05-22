@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.epsi.myEpsi.beans.User;
-import fr.epsi.myEpsi.util.DBConnectionManager;
 
 public class UserDao implements IUserDao{
 
 	
-	private DBConnectionManager connection;
+	private DAOManager connection;
 	
 	public UserDao() {
 		connection.getConnection();
