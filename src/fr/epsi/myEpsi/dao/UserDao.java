@@ -24,23 +24,22 @@ public class UserDao implements IUserDao{
 	
 	@Override
 	public List<User> getListOfUsers() {
-		List<User> users = new ArrayList<User>();
+		List<User> user = new ArrayList<User>();
         try {
         	
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM USERS");
-            while (rs.next()) {
-                User user = new User();
-                user.setId(rs.getString("ID"));
-                user.setPassword(rs.getString("PASSWORD"));
-                user.setAdministrator(rs.getBoolean("ISADMINSITRATOR"));
-                users.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            String req = "SELECT * FROM USERS";
+            ResultSet results = null;
 
-        return users;
+            results = statement.executeQuery(req);
+    			    while (results.next()) {
+    			    	user.add(new User(results.getString(1), results.getString(2), results.getBoolean(3)));
+    			     }	   
+
+    		} catch (SQLException e1) {
+    			e1.printStackTrace();
+    		}
+    		return user;
 	}
 
 	@Override

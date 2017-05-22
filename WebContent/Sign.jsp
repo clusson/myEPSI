@@ -12,7 +12,7 @@
 <h1>myEpsi</h1>
 <h2>Inscription utilisateur</h2>
 <div class="container">
-<form action ="sign" method = "POST">
+<form action ="Sign" method = "POST">
 <div class="form-group">
 <label for="email">Email
 <input type="email" name="id" id="id" required></input>

@@ -12,7 +12,7 @@
 		<h1>myEpsi</h1>
 		<h2>Connexion utilisateur</h2>
 		<div class="container">
-			<form action="login" method="POST">
+			<form action="Login" method="POST">
 				<div class="form-group">
 					<label for="email">Email</label>
 					<input type="email" class="form-control" required placeholder="Entrer votre email">
