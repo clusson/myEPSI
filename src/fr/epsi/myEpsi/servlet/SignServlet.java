@@ -65,13 +65,13 @@ public class SignServlet extends HttpServlet {
 			logger.info(user.getId());
 			userService.addUser(user);
             pw.println("Login Success...!"); 
-            response.sendRedirect("index");
+            response.sendRedirect("index.jsp");
 		}
 		else {
 			pw.println("Sign Failed...!");
 			logger.info("User is null");
 			request.setAttribute("error", "Unknown user, please try again");
-            request.getRequestDispatcher("/sign.jsp").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
         
 	}
