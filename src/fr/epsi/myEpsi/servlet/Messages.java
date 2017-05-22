@@ -17,6 +17,7 @@ import fr.epsi.myEpsi.beans.Message;
 import fr.epsi.myEpsi.beans.Status;
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.service.UserService;
+import utils.DeleteMessageException;
 import fr.epsi.myEpsi.service.MessageService;
 import fr.epsi.myEpsi.beans.Message;
 
@@ -84,7 +85,7 @@ public class Messages extends HttpServlet {
 		if(id != null && connected != null){
 			Message message = messageService.getMessage(Long.parseLong(request.getParameter("id"))); 
 			try {
-				messageService.deleteMessage(message);
+				messageService.deleteMessage(message, connected);
 			} catch (DeleteMessageException e) {
 				logger.error("You are not authorized to delete this post");
 			}

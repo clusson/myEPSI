@@ -6,6 +6,7 @@ import fr.epsi.myEpsi.beans.Message;
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.IMessageDao;
 import fr.epsi.myEpsi.dao.IUserDao;
+import utils.DeleteMessageException;
 
 public class MessageService implements IMessageService {
 	private IMessageDao messageDao;
@@ -32,8 +33,12 @@ public class MessageService implements IMessageService {
 	}
 
 	@Override
-	public void deleteMessage(Message message) {
-		messageDao.deleteMessage(message);
+	public void deleteMessage(Message message, User connected) throws DeleteMessageException{
+		if(message.getAuthor().getId().equals(connected) || connected.getAdministrator()){
+			messageDao.deleteMessage(message);
+		}else{
+			throw new DeleteMessageException();
+		}
 
 	}
 
