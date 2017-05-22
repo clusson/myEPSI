@@ -15,8 +15,9 @@ public class Message {
 	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public Message setStatus(Status status) {
 		this.status = status;
+		return this;
 	}
 	public Long getId() {
 		return id;
@@ -39,8 +40,9 @@ public class Message {
 	public User getAuthor() {
 		return author;
 	}
-	public void setAuthor(User author) {
+	public Message setAuthor(User author) {
 		this.author = author;
+		return this;
 	}
 	public Timestamp getCreationDate() {
 		return creationDate;

@@ -43,7 +43,7 @@ public class SignServlet extends HttpServlet {
 	 */
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Affichage de la page d'inscription */
-        this.getServletContext().getRequestDispatcher("sign.jsp").forward( request, response );
+        this.getServletContext().getRequestDispatcher("/sign.jsp").forward( request, response );
     }
 
     
@@ -57,14 +57,15 @@ public class SignServlet extends HttpServlet {
 			user.setAdministrator(false);
 			user.setPassword(request.getParameter("PASSWORD"));
             dao.addUser(user);
+            response.sendRedirect("home");
 		}
 		else {
 			logger.info("User is null");
+			request.setAttribute("error", "Unknown user, please try again");
+            request.getRequestDispatcher("/sign.jsp").forward(request, response);
 		}
         
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("users", dao.getListOfUsers());
-        view.forward(request, response);
+
 
 	}
 

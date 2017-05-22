@@ -12,12 +12,13 @@ import org.apache.log4j.Logger;
 
 import fr.epsi.myEpsi.beans.Message;
 import fr.epsi.myEpsi.beans.User;
+import fr.epsi.myEpsi.service.UserService;
 
 public class MessageDao implements IMessageDao {
 	
 	DAOManager connection;
 	private static Logger logger = Logger.getLogger(MessageDao.class);
-	
+
 	public MessageDao() {
 		connection.getConnection();
 	}
@@ -91,12 +92,13 @@ public class MessageDao implements IMessageDao {
     		.prepareStatement("INSERT INTO MESSAGES(id, title, content, author, creationDate, updateDate, status"
     				+ ") values (?, ?, ?, ?, ?, ?, ? )");
             // Parameters start with 1
+            
             preparedStatement.setLong(1, message.getId());
             preparedStatement.setString(2, message.getTitle());
             preparedStatement.setString(3, message.getContent());
-            //preparedStatement.setString(4, message.setAuthor(message.getAuthor()));
+            preparedStatement.setObject(4, message.getAuthor());
             preparedStatement.setDate(5, new Date(0));
-            //preparedStatement.setString(6, message.setStatus(message.getStatus().toString()));
+            preparedStatement.setObject(6, message.getStatus());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

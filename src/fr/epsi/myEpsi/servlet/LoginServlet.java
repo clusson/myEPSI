@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 			if (errorMsg != null){
-				RequestDispatcher rd = getServletContext().getNamedDispatcher("/login.jsp");
+				RequestDispatcher rd = getServletContext().getNamedDispatcher("/sign.jsp");
 				PrintWriter out= response.getWriter();
 				out.print("<font color = red>"+errorMsg+"</font>");
 				rd.include(request, response);

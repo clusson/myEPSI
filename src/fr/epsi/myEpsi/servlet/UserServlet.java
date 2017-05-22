@@ -27,7 +27,7 @@ public class UserServlet extends HttpServlet {
      */
     public UserServlet() {
         super();
-        dao = new UserDao();
+       // dao = new UserDao();
     }
 
 	/**
