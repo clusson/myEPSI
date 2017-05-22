@@ -7,19 +7,25 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> 
-<title>Inscription</title>
+<title>Connexion</title>
 </head>
 <body>
+<h1>myEpsi</h1>
+<h2>Connexion utilisateur</h2>
+<div class="container">
+<form action="login.jsp" method="POST">
+<div class="form-group">
+<label for="exampleInputEmail1">Email</label>
+<input type="email" class="form-control" placeholder="Entrer votre email">
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Mot de passe</label>
+<input type="password" class="form-control" placeholder="Mot de passe">
+</div>
 
-<form action ="sign" method = "POST">
-<h2>Votre e-mail</h2>
-<input type="email" name="id"></input>
-<h2>Votre mot de passe</h2>
-<input type="password" name="password"></input>
-<h2>Confirmer votre mot de passe</h2>
-<input type="password"></input>
-<input type="submit" value="S'inscrire"></input>
+<button type="submit" class="btn btn-default">Se connecter</button>
 </form>
+</div>
 
 </body>
 </html>

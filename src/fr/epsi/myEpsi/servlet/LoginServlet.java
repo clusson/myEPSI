@@ -28,6 +28,7 @@ import fr.epsi.myEpsi.service.UserService;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(LoginServlet.class);
+	private UserService userService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+			User user = userService.getUserById(request.getParameter("id"));
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			String errorMsg = null;
@@ -68,23 +70,10 @@ public class LoginServlet extends HttpServlet {
 				PrintWriter out= response.getWriter();
 				out.print("<font color = red>"+errorMsg+"</font>");
 				rd.include(request, response);
-			}else{
-				
-			Connection con = (Connection) getServletContext().getAttribute("DBConnection");
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			try{
-				ps = con.prepareStatement("SELECT email, password from USERS where email = ? and password = ? limit 1 ");
-				ps.setString(1, email);
-				ps.setString(2,  password);
-				
-				rs = ps.executeQuery();
-				
-				if (rs != null && rs.next()){
-					User user = new User(rs.getString("email"), rs.getString("password"), false);
-				}
-			}
-			
+			}else if (user != null){
+				request.getSession().setAttribute("user", user);
+				logger.info("New session for user :"+user.getId());
+				response.sendRedirect("home");
 		}		
 	}
 

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.UserDao;
+import fr.epsi.myEpsi.service.UserService;
 
 /**
  * Servlet implementation class SignServlet
@@ -19,8 +22,10 @@ import fr.epsi.myEpsi.dao.UserDao;
 @WebServlet("/sign")
 public class SignServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static String LIST_USER = "/listUser.jsp";
+	private static String LIST_USER = "/listUser.jsp";
+    private static Logger logger = Logger.getLogger(LoginServlet.class);
     //TODO CREATE CONSTANTS
+    private UserService userService;
     private UserDao dao;
     private User user;
        
@@ -46,13 +51,16 @@ public class SignServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-        user.setPassword(request.getParameter("PASSWORD"));
-        String userid = request.getParameter("ID");
-        if(userid == null || userid.isEmpty())
-        {
+		
+		if (user != null) {
+			user.setId(request.getParameter("id"));
+			user.setAdministrator(false);
+			user.setPassword(request.getParameter("PASSWORD"));
             dao.addUser(user);
-        }
+		}
+		else {
+			logger.info("User is null");
+		}
         
         RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
         request.setAttribute("users", dao.getListOfUsers());

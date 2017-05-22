@@ -1,10 +1,7 @@
 package fr.epsi.myEpsi.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -67,12 +64,12 @@ public class UserDao implements IUserDao{
 	public void addUser(User user) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO USERS(id,password,administrator) values (?, ?, ?, ? )");
+    		.prepareStatement("INSERT INTO USERS(id,password,administrator) values (?, ?, ?, ? )");
             // Parameters start with 1
             preparedStatement.setString(1, user.getId());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setBoolean(3, user.getAdministrator());
-            preparedStatement.executeUpdate();
+            preparedStatement.executeQuery();
 
         } catch (SQLException e) {
             e.printStackTrace();

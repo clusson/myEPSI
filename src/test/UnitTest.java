@@ -14,6 +14,6 @@ public class UnitTest {
 
 	   @Test
 	   public void testPrintMessage() {	  
-	      assertEquals();
+	      //assertEquals();
 	   }
 }
