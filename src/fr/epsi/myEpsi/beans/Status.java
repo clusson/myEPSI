@@ -15,5 +15,4 @@ public enum Status {
 		AL.add(ARCHIVED);
 		return AL;
 	}
-
 }
