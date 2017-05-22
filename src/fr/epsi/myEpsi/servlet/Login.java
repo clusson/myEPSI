@@ -1,24 +1,15 @@
 package fr.epsi.myEpsi.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Arrays;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
 import fr.epsi.myEpsi.beans.User;
-import fr.epsi.myEpsi.dao.MessageDao;
 import fr.epsi.myEpsi.service.UserService;
 import utils.UserDuplicateException;
 
