@@ -65,11 +65,11 @@ public class Login extends HttpServlet {
 			try {
 				userService.addUser(user);
 			} catch (UserDupplicateException e) {
-				logger.error("Cannot create two user with same ID");
+				logger.error("You can't create two users with same ID");
 			}
-			response.sendRedirect("users");
+			response.sendRedirect("Users");
 		} else {
-			response.sendRedirect("users");
+			response.sendRedirect("Users");
 		}
 	}
 }

@@ -56,7 +56,7 @@ public class Messages extends HttpServlet {
 		
 		User connected = (User) request.getSession().getAttribute("user");
 		if(connected == null){
-			logger.error("User not connectd",request);
+			logger.error(request);
 			response.sendRedirect("Signin");
 		} else if(request.getParameter("action") != null && request.getParameter("action").equals("DELETE")) {
 			this.doDelete(request, response);
@@ -84,7 +84,7 @@ public class Messages extends HttpServlet {
 		if(id != null && connected != null){
 			Message message = messageService.getMessage(Long.parseLong(request.getParameter("id"))); 
 			try {
-				messageService.deleteMessage(message, connected);
+				messageService.deleteMessage(message);
 			} catch (DeleteMessageException e) {
 				logger.error("You are not authorized to delete this post");
 			}
