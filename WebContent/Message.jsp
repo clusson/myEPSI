@@ -11,7 +11,7 @@
 		<h1>myEpsi</h1>
 		<h2>Envoi d'un message</h2>
 		<div class="container">
-			<form action ="sign" method = "POST">
+			<form action ="Messages" method = "POST">
 				<div class="form-group">
 					<label for="title">Title <input type="text" name="title" required=required></input></label>
 				</div>
