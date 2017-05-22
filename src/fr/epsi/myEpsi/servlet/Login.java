@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.MessageDao;
 import fr.epsi.myEpsi.service.UserService;
-import utils.UserDupplicateException;
+import utils.UserDuplicateException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -64,7 +64,7 @@ public class Login extends HttpServlet {
 			user.setAdministrator(Boolean.parseBoolean(request.getParameter("admin")));
 			try {
 				userService.addUser(user);
-			} catch (UserDupplicateException e) {
+			} catch (UserDuplicateException e) {
 				logger.error("You can't create two users with same ID");
 			}
 			response.sendRedirect("Users");

@@ -16,7 +16,7 @@ import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.UserDao;
 import fr.epsi.myEpsi.service.IUserService;
 import fr.epsi.myEpsi.service.UserService;
-import utils.UserDupplicateException;
+import utils.UserDuplicateException;
 
 /**
  * Servlet implementation class UserServlet

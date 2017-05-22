@@ -1,11 +1,13 @@
 package fr.epsi.myEpsi.service;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import fr.epsi.myEpsi.beans.User;
-import fr.epsi.myEpsi.dao.UserDao;
 import fr.epsi.myEpsi.dao.IUserDao;
+import fr.epsi.myEpsi.dao.UserDao;
+import utils.UserDuplicateException;
 
 public class UserService implements IUserService {
 	public IUserDao dao = new UserDao();
@@ -23,11 +25,11 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void addUser(User user) {
-		if (user != null){
-			dao.addUser(user);
+	public void addUser(User user) throws UserDuplicateException {
+		if(getUserById(user.getId()) == null){
+			dao.addUser(user);	
 		} else {
-			logger.info("No user exists");
+			throw new UserDuplicateException();
 		}
 	}
 
