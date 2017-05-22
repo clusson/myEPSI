@@ -10,38 +10,34 @@ public class UserService implements IUserService {
 	private IUserDao userDao;
 	
 	public UserService() {
-		UserDao user = new UserDao();
+		
 	}
 
-	
 	@Override
 	public List<User> getListOfUsers() {
-		List<User> result = userDao.getListOfUsers();
-		return result;
+		return userDao.getListOfUsers();
 	}
 
 	@Override
-	public User getUserById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void getUserById(String id) {
+		User user = new User();
+		user.getId();
 	}
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.addUser(user);
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.updateUser(user);
 	}
 
 	@Override
 	public void deleteUser(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.deleteUser(user);
 	}
+
 
 }

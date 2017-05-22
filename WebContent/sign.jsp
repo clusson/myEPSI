@@ -15,7 +15,7 @@
 <form action ="sign" method = "POST">
 <div class="form-group">
 <label for="email">Email
-<input type="email" name="id" required></input>
+<input type="email" name="id" id="id" required></input>
 </label>
 </div>
 <div class="form-group">

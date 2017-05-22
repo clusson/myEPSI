@@ -26,8 +26,7 @@ public class SignServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(LoginServlet.class);
     //TODO CREATE CONSTANTS
     private UserService userService;
-    private UserDao dao;
-    private User user;
+    
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,21 +51,29 @@ public class SignServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (user != null) {
-			user.setId(request.getParameter("id"));
+		PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+ 
+		String userID=request.getParameter("id");
+		String pass=request.getParameter("password");
+		
+		if (userID != null && pass != null) {
+			User user = new User();
+			user.setId(userID);
+			user.setPassword(pass);
 			user.setAdministrator(false);
-			user.setPassword(request.getParameter("PASSWORD"));
-            dao.addUser(user);
+			logger.info(user.getId());
+			userService.addUser(user);
+            pw.println("Login Success...!"); 
             response.sendRedirect("home");
 		}
 		else {
+			pw.println("Sign Failed...!");
 			logger.info("User is null");
 			request.setAttribute("error", "Unknown user, please try again");
             request.getRequestDispatcher("/sign.jsp").forward(request, response);
 		}
         
-
-
 	}
 
 }

@@ -11,7 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <h4>        Hello,      <%=session.getAttribute("name")%></h4>
 Test bonjour ! Clap OVER
-<jsp:forward page="/UserServlet?action=listUser" />
+
 </body>
 </html>
