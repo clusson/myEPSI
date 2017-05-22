@@ -20,8 +20,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public void getUserById(String id) {
-		User user = new User();
-		user.getId();
+		userDao.getUserById(id);
 	}
 
 	@Override
