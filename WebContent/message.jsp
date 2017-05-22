@@ -13,13 +13,13 @@
 		<div class="container">
 			<form action ="sign" method = "POST">
 				<div class="form-group">
-					<label for="title">Title<input name="title" required=required></input></label>
+					<label for="title">Title <input type="text" name="title" required=required></input></label>
 				</div>
 				<div class="form-group">
-					<label for="user">Author<input type="User" name="user" required=required></input></label>
+					<label for="user">Author <input type="User" name="user" required=required></input></label>
 				</div>
 				<div class="form-group">
-					<label for="msg">Content<input type="Message" name="message" id="message" required=required></input></label>
+					<label for="msg">Content <input type="Message" name="message" id="message" maxlength="140" required=required></input></label>
 				</div>
 				<button type="submit" class="btn btn-default">Envoyer le message</button>
 			</form>
