@@ -34,6 +34,8 @@ public class Messages extends HttpServlet {
      */
     public Messages() {
         super();
+        userService = new UserService();
+        messageService = new MessageService();
         // TODO Auto-generated constructor stub
     }
 
@@ -83,7 +85,7 @@ public class Messages extends HttpServlet {
 			Message message = messageService.getMessage(Long.parseLong(request.getParameter("id"))); 
 			try {
 				messageService.deleteMessage(message, connected);
-			} catch (CannotDeleteMessageException e) {
+			} catch (DeleteMessageException e) {
 				logger.error("You are not authorized to delete this post");
 			}
 			response.sendRedirect("Messages");
