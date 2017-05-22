@@ -5,12 +5,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import fr.epsi.myEpsi.beans.Message;
 import fr.epsi.myEpsi.beans.User;
 
 public class MessageDao implements IMessageDao {
 	
 	DAOManager connection;
+	private static Logger logger = Logger.getLogger(MessageDao.class);
 	
 	public MessageDao() {
 		connection.getConnection();
@@ -61,8 +65,20 @@ public class MessageDao implements IMessageDao {
 
 	@Override
 	public Message getMessage(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Message message = null;
+		if(connection != null){
+			try{
+				Statement stmt = connection.createStatement();
+				ResultSet result = stmt.executeQuery("SELECT * FROM MESSAGES where id =:id");
+				while (result.next()){
+					message = (Message) result;
+				}
+
+			}catch (SQLException e){
+				logger.error(e);;
+			}
+		}
+		return message;
 	}
 
 	@Override
