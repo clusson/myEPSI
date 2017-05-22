@@ -1,7 +1,6 @@
 package fr.epsi.myEpsi.service;
 
 import java.util.List;
-
 import fr.epsi.myEpsi.beans.User;
 
 public interface IUserService {

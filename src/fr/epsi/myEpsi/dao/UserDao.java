@@ -7,18 +7,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.epsi.myEpsi.beans.User;
+import fr.epsi.myEpsi.servlet.Login;
 
 public class UserDao implements IUserDao{
 
 	
 	private DAOManager connection;
+	private static Logger logger = Logger.getLogger(UserDao.class);
 	
 	public UserDao() {
 		connection.getConnection();
 	}
-	
-	
 	
 	@Override
 	public List<User> getListOfUsers() {
@@ -66,11 +68,9 @@ public class UserDao implements IUserDao{
 	public void addUser(User user) {
         try {
             PreparedStatement preparedStatement = connection
-    		.prepareStatement("INSERT INTO USERS(id,password,administrator) values (?, ?, ?, ? )");
+    		.prepareStatement("INSERT INTO USERS(id,password,administrator) values "
+    				+ "('" + user.getId() + "','"+user.getPassword()+ "','"+ user.getAdministrator()+ "')");
             // Parameters start with 1
-            preparedStatement.setString(1, user.getId());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setBoolean(3, user.getAdministrator());
             preparedStatement.executeQuery();
 
         } catch (SQLException e) {
@@ -83,12 +83,9 @@ public class UserDao implements IUserDao{
 	public void updateUser(User user) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE USERS set PASSWORD=?, ISADMINISTRATOR=?" +
-                            "where ID=?");
-            // Parameters start with 1
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setBoolean(2, user.getAdministrator());
-            preparedStatement.setString(3, user.getId());
+                    .prepareStatement("UPDATE USERS set password=" + user.getPassword() + ","
+                    		+ " administrator="+ user.getAdministrator()+ 
+                            "where ID=" + user.getId() +"");
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -100,9 +97,7 @@ public class UserDao implements IUserDao{
 	public void deleteUser(User user) {
 		 try {
 	            PreparedStatement preparedStatement = connection
-	                    .prepareStatement("DELETE FROM USERS where ID=?");
-	            // Parameters start with 1
-	            preparedStatement.setString(1, user.getId());
+	                    .prepareStatement("DELETE FROM USERS where ID="+ user.getId()+"");
 	            preparedStatement.executeUpdate();
 
 	        } catch (SQLException e) {

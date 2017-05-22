@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class VersionServlet
  */
 @WebServlet("/VersionServlet")
-public class VersionServlet extends HttpServlet {
+public class Version extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	Logger logger =  Logger.getLogger(Version.class);
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VersionServlet() {
+    public Version() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +30,7 @@ public class VersionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("version.jsp").forward(request, response);
+		request.getRequestDispatcher("Version.jsp").forward(request, response);
 	}
 
 }

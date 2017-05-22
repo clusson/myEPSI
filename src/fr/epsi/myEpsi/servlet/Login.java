@@ -20,20 +20,21 @@ import org.apache.log4j.Logger;
 import fr.epsi.myEpsi.beans.User;
 import fr.epsi.myEpsi.dao.MessageDao;
 import fr.epsi.myEpsi.service.UserService;
+import utils.DuplicateUserException;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(LoginServlet.class);
+	private static Logger logger = Logger.getLogger(Login.class);
 	private UserService userService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,32 +51,25 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		logger.debug(request);
-			User user = userService.getUserById(request.getParameter("id"));
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			String errorMsg = null;
-			
-			if (email == null || email.equals(""))
-			{
-				errorMsg ="L'email ne peut pas être null ou vide";
+		User connected = (User) request.getSession().getAttribute("user");
+		
+		if(connected != null && request.getParameter("action") != null && request.getParameter("action").equals("DELETE")) {
+			this.doDelete(request, response);
+		} else if(connected != null &&request.getParameter("action") != null && request.getParameter("action").equals("PUT")) {
+			this.doPut(request, response);
+		} else if(request.getParameter("password").equals(request.getParameter("repassword"))){   
+			User user = new User();
+			user.setId(request.getParameter("login"));
+			user.setPassword(request.getParameter("password"));
+			user.setAdministrator(Boolean.parseBoolean(request.getParameter("admin")));
+			try {
+				userService.addUser(user);
+			} catch (DuplicateUserException e) {
+				logger.error("Cannot create two user with same ID");
 			}
-			if(password == null || password.equals(""))
-			{
-				errorMsg ="Le mot de passe ne peut pas être nul ou vide";
-			}
-			
-			if (errorMsg != null){
-				RequestDispatcher rd = getServletContext().getNamedDispatcher("/sign.jsp");
-				PrintWriter out= response.getWriter();
-				out.print("<font color = red>"+errorMsg+"</font>");
-				rd.include(request, response);
-			}else if (user != null){
-				request.getSession().setAttribute("user", user);
-				logger.info("New session for user :"+user.getId());
-				response.sendRedirect("index.jsp");
-			}
+			response.sendRedirect("users");
+		} else {
+			response.sendRedirect("users");
+		}
 	}
-
 }
