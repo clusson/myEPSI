@@ -39,9 +39,9 @@ public class Sign extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-    	logger.info("GET /sign");
+    	logger.info("GET /Sign");
 	    logger.debug(request);
-		request.getRequestDispatcher("sign.jsp").forward(request, response);
+		request.getRequestDispatcher("Sign.jsp").forward(request, response);
     }
 
     
@@ -51,7 +51,7 @@ public class Sign extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		logger.info("POST /sign");
+		logger.info("POST /Sign");
 		logger.debug(request);
 		
 		String username=request.getParameter("id");
@@ -61,11 +61,11 @@ public class Sign extends HttpServlet {
 		
 		if (user.getPassword() != null && user.getId() != null) {
             request.getSession().setAttribute("user", userService.getUserById(username));
-            response.sendRedirect("message");
+            response.sendRedirect("Message");
         } 
         else { 
-        	logger.error("Signin error");
-        	request.getRequestDispatcher("sign.jsp").forward(request, response);
+        	logger.error("Sign in error");
+        	request.getRequestDispatcher("Sign.jsp").forward(request, response);
         }
         
 	}
