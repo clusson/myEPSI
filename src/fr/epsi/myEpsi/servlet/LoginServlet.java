@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		logger.debug(request);
 			User user = userService.getUserById(request.getParameter("id"));
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
@@ -73,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 			}else if (user != null){
 				request.getSession().setAttribute("user", user);
 				logger.info("New session for user :"+user.getId());
-				response.sendRedirect("home");
+				response.sendRedirect("index.jsp");
 		}		
 	}
 
